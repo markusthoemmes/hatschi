@@ -76,6 +76,10 @@ h1 {
     margin-top: 30px;
 }
 
+#status-listening, #status-stopped {
+    cursor: pointer;
+}
+
 #status-listening span {
     margin-left: 25px;
 }
@@ -115,8 +119,21 @@ h1 {
 #status.loading #status-listening {
     display: none;
 }
+#status.loading #status-stopped {
+    display: none;
+}
 
 #status.listening #status-loading {
+    display: none;
+}
+#status.listening #status-stopped {
+    display: none;
+}
+
+#status.stopped #status-loading {
+    display: none;
+}
+#status.stopped #status-listening {
     display: none;
 }
 

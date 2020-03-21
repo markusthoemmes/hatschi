@@ -4,11 +4,13 @@ async function main() {
     symptoms: 'timestamp,symptom'
   });
 
+  let recognizer;
+  let listening = false;
+
   // Loads the model and starts the prediction.
   async function predict() {
-    const recognizer = speechCommands.create('BROWSER_FFT');
+    recognizer = speechCommands.create('BROWSER_FFT');
     await recognizer.ensureModelLoaded();
-    document.querySelector('#status').className = 'listening';
 
     // Array of words that the recognizer is trained to recognize.
     const symptoms = recognizer.wordLabels();
@@ -22,6 +24,15 @@ async function main() {
         symptomDetected("cough")
       }
     }, {probabilityThreshold: 0.75});
+
+    document.querySelector('#status').className = 'listening';
+    listening = true;
+  }
+
+  function stopPredicting() {
+    recognizer.stopListening();
+    document.querySelector('#status').className = 'stopped';
+    listening = false;
   }
 
   // Callback called everytime a symptom is detected.
@@ -107,6 +118,20 @@ async function main() {
 
   // Call redraw() to draw the initial state from the database.
   redraw()
+
+  document.querySelector('#status-listening').addEventListener('click', function() {
+    if(listening) {
+      stopPredicting();
+    }
+    return false;
+  });
+
+  document.querySelector('#status-stopped').addEventListener('click', function() {
+    if(!listening) {
+      predict();
+    }
+    return false;
+  });
 
   predict();
 }
