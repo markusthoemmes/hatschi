@@ -9,16 +9,18 @@ async function main() {
   if(!existed) {
     console.log("Database did not exist, adding sample data...");
     const bounds = lastNDays(14)
+    const data = []
     for(const i in bounds) {
       const [start, end] = bounds[i];
       const count = Math.floor(Math.random() * 40) + 20
       for(let j = 0; j < count; j++) {
-        db.symptoms.add({
+        data.push({
           timestamp: +start+j,
           symptom: "cough",
-        });
+        })
       }
     }
+    await db.symptoms.bulkAdd(data)
   }
 
   let recognizer;
