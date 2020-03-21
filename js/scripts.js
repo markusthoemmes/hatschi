@@ -66,17 +66,21 @@ async function main() {
 
   const chart = document.getElementById('chart');
   var myChart = new Chart(chart, {
+    plugins: [ChartDataLabels],
     type: 'line',
     data: {
       datasets:[{
-        label: 'Coughs',
         data: [],
         fill: false,
         borderColor: '#E0FCFF',
         pointBackgroundColor: '#85BAC0',
         pointBorderColor: '#85BAC0',
+        pointHoverBackgroundColor: '#85BAC0',
+        pointHoverBorderColor: '#85BAC0',
         pointRadius: 10,
+        pointHoverRadius: 10,
         borderWidth: 7,
+        hoverBorderWidth: 7,
       }]
     },
     options: {
@@ -117,6 +121,44 @@ async function main() {
             padding: 30,
           },
         }]
+      },
+      hover: {
+        animationDuration: 100,
+      },
+      tooltips: {
+        enabled: false,
+        xPadding: 10,
+        yPadding: 10,
+        bodyFontSize: 20,
+        bodyFontColor: '#3E3E3E',
+        bodyFontStyle: 'bold',
+        titleFontSize: 0,
+        backgroundColor: '#fff',
+        displayColors: false,
+        callbacks: {
+          title: function() {
+            return '';
+          }
+        }
+      },
+      plugins: {
+        // Change options for ALL labels of THIS CHART
+        datalabels: {
+          opacity: 0.9,
+          color: '#36A2EB',
+          anchor: 'end',
+          align: 'end',
+          backgroundColor: '#fff',
+          borderRadius: 3,
+          color: '#3E3E3E',
+          offset: 10,
+          font: {
+            size: 14,
+          },
+          formatter: function(value, context) {
+            return ''+value.y;
+          }
+        }
       }
     }
   });
