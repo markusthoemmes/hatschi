@@ -134,6 +134,7 @@ h1 {
     padding: 30px;
     margin-bottom: 30px;
     border-radius: 5px;
+    line-height: 1.4;
 }
 
 #health.good {
@@ -216,4 +217,13 @@ h1 {
 
 #testdata li:hover {
     cursor: pointer;
+}
+
+#disclaimer {
+    margin-top: 30px;
+    border-top: 1px solid #85BAC0;
+    padding-top: 30px;
+    line-height: 1.4;
+    color: #3E3E3E;
+    font-size:12px;
 }
