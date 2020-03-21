@@ -1,8 +1,25 @@
 async function main() {
+  const existed = await Dexie.exists('symptoms_database')
+
   const db = new Dexie("symptoms_database");
   db.version(1).stores({
     symptoms: 'timestamp,symptom'
   });
+
+  if(!existed) {
+    console.log("Database did not exist, adding sample data...");
+    const bounds = lastNDays(14)
+    for(const i in bounds) {
+      const [start, end] = bounds[i];
+      const count = Math.floor(Math.random() * 40) + 20
+      for(let j = 0; j < count; j++) {
+        db.symptoms.add({
+          timestamp: +start+j,
+          symptom: "cough",
+        });
+      }
+    }
+  }
 
   let recognizer;
   let listening = false;
@@ -89,6 +106,7 @@ async function main() {
             zeroLineWidth: 0,
           },
           ticks: {
+            beginAtZero: true,
             precision: 0,
             stepSize: 10,
             max: 80,
