@@ -1,7 +1,9 @@
-let recognizer;
+async function predict() {
+  let recognizer = speechCommands.create('BROWSER_FFT');
+  await recognizer.ensureModelLoaded();
+  document.querySelector('#prediction').textContent = 'Modell geladen';
 
-function predictWord() {
- // Array of words that the recognizer is trained to recognize.
+  // Array of words that the recognizer is trained to recognize.
   const words = recognizer.wordLabels();
   recognizer.listen(({scores}) => {
     // Turn scores into a list of (score,word) pairs.
@@ -11,12 +13,4 @@ function predictWord() {
     document.querySelector('#prediction').textContent = 'Ich glaube du has "' + scores[0].word + '" gesagt.';
   }, {probabilityThreshold: 0.75});
 }
-
-async function app() {
-  recognizer = speechCommands.create('BROWSER_FFT');
-  await recognizer.ensureModelLoaded();
-  document.querySelector('#prediction').textContent = 'Modell geladen';
-  predictWord();
-}
-
-app();
+predict();
