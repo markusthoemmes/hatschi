@@ -17,13 +17,15 @@ async function main() {
       scores = Array.from(scores).map((s, i) => ({score: s, word: symptoms[i]}));
       // Find the most probable word.
       scores.sort((s1, s2) => s2.score - s1.score);
-      symptomDetected(scores[0].word)
+
+      if(scores[0].word == "three") {
+        symptomDetected("cough")
+      }
     }, {probabilityThreshold: 0.75});
   }
 
   // Callback called everytime a symptom is detected.
   async function symptomDetected(symptom) {
-    document.querySelector('#prediction').textContent = 'Ich glaube du hast "' + symptom + '" gesagt.';
     await db.symptoms.add({
       timestamp: +moment(),
       symptom: symptom,
@@ -44,6 +46,7 @@ async function main() {
         pointBackgroundColor: '#85BAC0',
         pointBorderColor: '#85BAC0',
         pointRadius: 10,
+        borderWidth: 7,
       }]
     },
     options: {
@@ -59,7 +62,7 @@ async function main() {
           },
           ticks: {
             fontColor: '#fff',
-            fontSize: 30,
+            fontSize: 24,
             padding: 30,
           },
           type: 'time',
@@ -75,6 +78,9 @@ async function main() {
             zeroLineWidth: 0,
           },
           ticks: {
+            precision: 0,
+            stepSize: 10,
+            max: 80,
             fontColor: '#fff',
             fontSize: 16,
             padding: 30,
@@ -91,14 +97,7 @@ async function main() {
     const data = []
     for(const i in bounds) {
       [start, end] = bounds[i]
-      const d = await db.symptoms.where('timestamp').between(+start, +end).toArray()
-
-      let coughs = 0
-      d.forEach(datum => {
-        if (datum.symptom == "three") {
-          coughs++
-        }
-      })
+      const coughs = await db.symptoms.where('timestamp').between(+start, +end).count()
       data.push({x: start.toDate(), y: coughs})
     }
 

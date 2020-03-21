@@ -49,17 +49,42 @@ body {
 
 h1 {
     height: 140px;
-    background: #85BAC0;
+    background: url(logo.png) #85BAC0 16px 16px no-repeat;
     color: #fff;
+    text-indent: -9999px;
     font-size: 50px;
     line-height: 140px;
     padding-left: 20px;
 }
 
+#charts {
+    padding: 30px 40px 40px 40px;
+    background: #C1A898;
+    width: 1200px;
+    border-radius: 5px;
+    margin: 0 auto;
+}
+
+#resolutions {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#resolutions li {
+    padding: 10px 20px;
+    background: #fff;
+    color: #000;
+    display: inline-block;
+    border-radius: 10px;
+    color: #3E3E3E;
+    font-size:20px;
+    -webkit-box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.2);
+}
+
 #chart-container {
     background: #756458;
     padding: 30px;
-    width: 1200px;
-    border-radius: 20px;
-    margin: 0 auto;
+    border-radius: 5px;
 }
