@@ -54,6 +54,11 @@ body {
     margin-bottom: 30px;
 }
 
+#header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
 h1 {
     width: 270px;
     height: 106px;
