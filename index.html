@@ -11,11 +11,20 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/speech-commands"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/dexie@2.0.4/dist/dexie.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js"></script>
+
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+
 </head>
 
 <body>
-  <h1>Gesundheit!</h1>
+  <h1>Hatschi</h1>
   <div id="prediction">Lade Modell</div>
+  <div id="chart-container"><canvas id="chart" width="400" height="400"></canvas></div>
+  <script src="js/aggregation.js"></script>
   <script src="js/scripts.js"></script>
 </body>
 </html>
