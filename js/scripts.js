@@ -8,19 +8,7 @@ async function main() {
 
   if(!existed) {
     console.log("Database did not exist, adding sample data...");
-    const bounds = lastNDays(14)
-    const data = []
-    for(const i in bounds) {
-      const [start, end] = bounds[i];
-      const count = Math.floor(Math.random() * 40) + 20
-      for(let j = 0; j < count; j++) {
-        data.push({
-          timestamp: +start+j,
-          symptom: "cough",
-        })
-      }
-    }
-    await db.symptoms.bulkAdd(data)
+    writeFakeData(db.symptoms, [3, 4, 7, 5, 6, 8, 1].reverse());
   }
 
   let recognizer;
@@ -168,10 +156,21 @@ async function main() {
     const bounds = lastNDays(7)
 
     const data = []
+    let sum = 0
     for(const i in bounds) {
       [start, end] = bounds[i]
       const coughs = await db.symptoms.where('timestamp').between(+start, +end).count()
       data.push({x: start.toDate(), y: coughs})
+      sum += coughs
+    }
+
+    const average = sum/7
+    if(average < 5) {
+      document.querySelector('#health').className = 'good';
+    } else if(average < 20) {
+      document.querySelector('#health').className = 'warn';
+    } else {
+      document.querySelector('#health').className = 'bad';
     }
 
     myChart.data.datasets[0].data = data
@@ -181,21 +180,72 @@ async function main() {
   // Call redraw() to draw the initial state from the database.
   redraw()
 
-  document.querySelector('#status-listening').addEventListener('click', function() {
+  // Start predicting by default.
+  predict();
+
+  onClick('status-listening', function() {
     if(listening) {
       stopPredicting();
     }
-    return false;
-  });
+  })
 
-  document.querySelector('#status-stopped').addEventListener('click', function() {
+  onClick('status-stopped', function() {
     if(!listening) {
       predict();
     }
-    return false;
+  })
+
+  onClick('bsp1', function() {
+    db.symptoms.clear();
+    writeFakeData(db.symptoms, [3, 4, 7, 5, 6, 8, 1].reverse());
+    redraw();
   });
 
-  predict();
+  onClick('bsp2', function() {
+    db.symptoms.clear();
+    writeFakeData(db.symptoms, [3, 9, 11, 20, 27, 33, 22].reverse());
+    redraw();
+  });
+
+  onClick('bsp3', function() {
+    db.symptoms.clear();
+    writeFakeData(db.symptoms, [3, 9, 22, 37, 45, 64, 65].reverse());
+    redraw();
+  });
+
+  onClick('random', function() {
+    db.symptoms.clear();
+    writeFakeData(db.symptoms, [...Array(7).keys()].map(i => Math.floor(Math.random() * 60)))
+    redraw();
+  })
+
+  onClick('reset', function() {
+    db.symptoms.clear();
+    redraw();
+  })
 }
 
 main();
+
+function onClick(id, f) {
+  document.getElementById(id).addEventListener('click', function() {
+    f();
+    return false;
+  });
+}
+
+async function writeFakeData(table, fakes) {
+  const bounds = lastNDays(fakes.length)
+  const data = []
+  for(const i in bounds) {
+    const [start, end] = bounds[i];
+    const count = fakes[i]
+    for(let j = 0; j < count; j++) {
+      data.push({
+        timestamp: +start+j,
+        symptom: "cough",
+      })
+    }
+  }
+  await table.bulkAdd(data)
+}
