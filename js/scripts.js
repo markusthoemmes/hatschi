@@ -108,7 +108,7 @@ async function main() {
   // Call redraw() to draw the initial state from the database.
   redraw()
 
-  //predict();
+  predict();
 }
 
 main();
