@@ -21,8 +21,20 @@
 </head>
 
 <body>
-  <h1>Hatschi</h1>
-  <div id="prediction">Lade Modell</div>
+  <div id="header">
+    <h1>Hatschi</h1>
+
+    <div id="status" class="loading">
+      <div id="status-loading">Lade Modell...</div>
+      <div id="status-listening">
+        <div class="ring-container">
+          <div class="ringring"></div>
+          <div class="circle"></div>
+        </div>
+        <span>Analyse aktiv</span>
+      </div>
+    </div>
+  </div>
   <div id="charts">
     <ul id="resolutions">
       <li>Letzte 7 Tage</li>

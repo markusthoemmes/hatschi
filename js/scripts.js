@@ -8,7 +8,7 @@ async function main() {
   async function predict() {
     const recognizer = speechCommands.create('BROWSER_FFT');
     await recognizer.ensureModelLoaded();
-    document.querySelector('#prediction').textContent = 'Modell geladen';
+    document.querySelector('#status').className = 'listening';
 
     // Array of words that the recognizer is trained to recognize.
     const symptoms = recognizer.wordLabels();
@@ -108,7 +108,7 @@ async function main() {
   // Call redraw() to draw the initial state from the database.
   redraw()
 
-  predict();
+  //predict();
 }
 
 main();
