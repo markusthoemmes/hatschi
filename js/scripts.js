@@ -53,6 +53,7 @@ async function main() {
   }
 
   const chart = document.getElementById('chart');
+  Chart.defaults.global.defaultFontFamily = 'Nunito, sans-serif';
   var myChart = new Chart(chart, {
     plugins: [ChartDataLabels],
     type: 'line',

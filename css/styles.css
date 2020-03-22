@@ -43,8 +43,9 @@ table {
 }
 
 body {
-    font-family: sans-serif;
     background: #E0FCFF;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
 }
 
 #header {
