@@ -229,6 +229,18 @@ async function main() {
     db.symptoms.clear();
     redraw();
   })
+
+  document.addEventListener('keydown', function(event) {
+    const key = event.key; // "a", "1", "Shift", etc.
+    if(key == "h") {
+      db.symptoms.add({
+        timestamp: +moment(),
+        symptom: "cough"
+      });
+      redraw();
+    }
+  });
+
 }
 
 main();
