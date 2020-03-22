@@ -12,6 +12,11 @@ Try it out [**here**](https://markusthoemmes.github.io/hatschi/).
 **Note:** The application doesn't actually detect coughs yet (see explanation
 below). You can say "three" to make it count "coughs" though.
 
+**Note:** The application doesn't send data anywhere. The code runs locally in
+your browser and historic data is stored in your browser using IndexedDB. Nobody
+else will ever get access to the audio stream analyzed here neither see historic
+data of your health status.
+
 ## The idea
 
 We cough, sneeze and sniff subconsciously throughout the day. Sometimes we don't
