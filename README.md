@@ -88,6 +88,8 @@ and [here](https://github.com/caisq/tfjs-dump/tree/master/speech-command). These
 examples need to be adjusted to not work on the list of words they are based on
 now, but to be trained to detect "cough". This repository does not contain the
 cough sample set we created due to potential copyright infringement.
+[This repository](https://github.com/hernanmd/COVID-19-train-audio) started a
+collection on covid/non-covid coughs to train models for example.
 
 ### Implementing more than just cough detection
 
