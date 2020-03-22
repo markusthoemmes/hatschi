@@ -1,13 +1,58 @@
-# hatschi
+# Hatschi
 
-Hatschi (cutesy german way of saying "bless you") is an application that
+**Hatschi** (cutesy german way of saying "bless you") is an application that
 automatically tracks respiratory symptoms of the cold, the flu or COVID-19 in
 particular. It automatically assesses these symptoms through usage of a
 microphone and gives the user a statistical overview of the amount of symptoms
 shown throughout the day. That data is furthermore used to give health
 recommendations to the user, i.e. to stay at home or to get tested for COVID-19.
 
-## WirVsVirus Hackathon
+Try it out [**here**](https://markusthoemmes.github.io/hatschi/).
+
+## The idea
+
+We cough, sneeze and sniff subconsciously throughout the day. Sometimes we don't
+even know if we're healthy or sick. We might feel healthy but actually we're a
+walking germ-bomb. This application puts an end to that and tracks your
+respiratory symptoms throughout the entire day. It's meant to run in the
+background and go unnoticed. Based on the data it gathers, it's able to tell if
+you're healthy (having a very low symptom count), kinda unhealthy or if you
+should go see a doctor immediately. This is especially important in the impeding
+COVID-19 outbreak but not necessarily limited to it at all. It could be used in
+a day-to-day office setting as well, where it would prevent workers from being
+in the office if they are infectuous.
+
+### Detecting respiratory symptoms
+
+There is quite a bit of scientific research in this area.
+
+- [**Continuous Sound Collection Using Smartphones and Machine Learning to Measure Cough**](https://www.karger.com/Article/FullText/504666)
+- [**The automatic recognition and counting of cough**](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1601963/)
+- [**Recognizing bodily noises (ie, not spoken words) [StackExchange Post]**](https://dsp.stackexchange.com/questions/17268/recognizing-bodily-noises-ie-not-spoken-words)
+- [**Accurate and Privacy Preserving Cough Sensing using a Low-Cost Microphone**](https://ubicomplab.cs.washington.edu/pdfs/accurate-and.pdf)
+- [**MobiCough: Real-Time Cough Detection and Monitoring Using Low-Cost Mob**](https://link.springer.com/chapter/10.1007/978-3-662-49381-6_29)
+- [**A prospective multicentre study testing the diagnostic accuracy of an automated cough sound centred analytic system for the identification of common respiratory disorders in children**](https://respiratory-research.biomedcentral.com/articles/10.1186/s12931-019-1046-6)
+- [**This AI system listens to coughs to learn where the coronavirus is spreading**](https://thenextweb.com/neural/2020/03/20/this-ai-system-listens-to-coughs-to-learn-where-the-coronavirus-is-spreading/)
+
+Based on this research it should be possible to accurately detect different
+respiratory symptoms. Given the shortage of time (the hackathon had 48 hours of
+code-time) we went for a Tensorflow.js based approach to make it runnable in the
+browser and thus available on mobile and laptop/desktop pcs.
+
+We collected sample data from
+[Google Research](https://research.google.com/audioset/dataset/cough.html) and
+trained a model to detect coughs. Unfortunately this is where the time
+constraint bit us and we had to leave it up to be implemented post-hackathon if
+needed.
+
+Currently, the implementation uses a
+[Tensorflow.js sample model](https://codelabs.developers.google.com/codelabs/tensorflowjs-audio-codelab/index.html),
+that is able to detect spoken words. The word "three" is used as a synonym of a
+cough in the current implementation.
+
+---
+
+![](css/wvsv.png)
 
 This app has been created as part of the "WirVsVirus" Hackathon held by the
 federal government of Germany to fight the corona virus disease.
