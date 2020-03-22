@@ -111,6 +111,14 @@ sometimes, especially when using a randomized data set. This should be improved
 upon using more insight from actual medical professionals and respective
 statistical handling of the data at hand.
 
+### Collect anonymized data centrally
+
+As a lot of symptom-gathering apps are built these days, this application could
+of course be used as well to feed a centralized data store to determine
+hot-spots of flu-like outbreaks and even COVID-19 spread. It could even help to
+narrow down the number of unreported cases and give a clearer picture on how
+many people are actually likely infected.
+
 ---
 
 ![](css/wvsv.png)
