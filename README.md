@@ -9,6 +9,9 @@ recommendations to the user, i.e. to stay at home or to get tested for COVID-19.
 
 Try it out [**here**](https://markusthoemmes.github.io/hatschi/).
 
+**Note:** The application doesn't actually detect coughs yet (see explanation
+below). You can say "three" to make it count "coughs" though.
+
 ## The idea
 
 We cough, sneeze and sniff subconsciously throughout the day. Sometimes we don't
