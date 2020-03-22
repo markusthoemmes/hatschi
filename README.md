@@ -22,6 +22,11 @@ COVID-19 outbreak but not necessarily limited to it at all. It could be used in
 a day-to-day office setting as well, where it would prevent workers from being
 in the office if they are infectuous.
 
+Moreover, we can also qualitatively analyze the type of coughs. A dry-cough is
+characteristic for COVID-19 for example. We can use our detection to either urge
+the user to go to see a doctor or to calm them down by stating that the cough
+pattern is not indicative of COVID-19.
+
 ### Detecting respiratory symptoms
 
 There is quite a bit of scientific research in this area.
@@ -49,6 +54,20 @@ Currently, the implementation uses a
 [Tensorflow.js sample model](https://codelabs.developers.google.com/codelabs/tensorflowjs-audio-codelab/index.html),
 that is able to detect spoken words. The word "three" is used as a synonym of a
 cough in the current implementation.
+
+## The hackathon process
+
+We started at 0, with a team of 8. We divided the team into a **visualization**
+and a **model** team. The former would design and implement the application, get
+the statistics and visualize it for the the user. It also implemented any
+decision making logic. The model team was responsible for collecting training
+data and producing a model to be used in TensorflowJS.
+
+Working in parallel has greatly improved the throughput of our work and we've
+been able to make great progress on both fronts, as can be seen in the example
+above. We underestimated the interface between a generic Tensorflow model and
+TensorflowJS though which at the end was a dealbreaker for not being able to
+import the trained model into the application.
 
 ---
 
