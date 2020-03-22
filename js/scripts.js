@@ -164,10 +164,15 @@ async function main() {
       sum += coughs
     }
 
+    const last = data[1].y
+    const diff = last - data[2].y
+    const today = data[0].y
+    const worst = Math.max(last, today)
     const average = sum/7
-    if(average < 5) {
+
+    if(worst < 10 && diff < 5 && worst <= average) {
       document.querySelector('#health').className = 'good';
-    } else if(average < 20) {
+    } else if(worst < 20 && diff < 10) {
       document.querySelector('#health').className = 'warn';
     } else {
       document.querySelector('#health').className = 'bad';
@@ -197,13 +202,13 @@ async function main() {
 
   onClick('bsp1', function() {
     db.symptoms.clear();
-    writeFakeData(db.symptoms, [3, 4, 7, 5, 6, 8, 1].reverse());
+    writeFakeData(db.symptoms, [3, 4, 7, 5, 6, 4, 1].reverse());
     redraw();
   });
 
   onClick('bsp2', function() {
     db.symptoms.clear();
-    writeFakeData(db.symptoms, [3, 9, 11, 20, 27, 33, 22].reverse());
+    writeFakeData(db.symptoms, [3, 9, 11, 20, 25, 19, 15].reverse());
     redraw();
   });
 
