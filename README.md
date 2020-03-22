@@ -48,7 +48,11 @@ We collected sample data from
 [Google Research](https://research.google.com/audioset/dataset/cough.html) and
 trained a model to detect coughs. Unfortunately this is where the time
 constraint bit us and we had to leave it up to be implemented post-hackathon if
-needed.
+needed. We have a rough idea on how to implement a model now, as can be seen by
+the `model` directory in this repository. The model in there is a very crudely
+trained model of the spoken words model used in the application (see below)
+though. Training a proper cough model would take longer than the deadline
+permits at this point.
 
 Currently, the implementation uses a
 [Tensorflow.js sample model](https://codelabs.developers.google.com/codelabs/tensorflowjs-audio-codelab/index.html),
