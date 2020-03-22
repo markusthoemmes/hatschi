@@ -76,6 +76,34 @@ above. We underestimated the interface between a generic Tensorflow model and
 TensorflowJS though which at the end was a dealbreaker for not being able to
 import the trained model into the application.
 
+## Future work
+
+### Implementing the cough detection
+
+As mentioned above, we didn't succeed in training the cough model though in
+theory, given more time, that should absolutely be possible. Relevant resources
+can be found
+[here](https://github.com/tensorflow/tfjs-models/tree/master/speech-commands/training/browser-fft)
+and [here](https://github.com/caisq/tfjs-dump/tree/master/speech-command). These
+examples need to be adjusted to not work on the list of words they are based on
+now, but to be trained to detect "cough". This repository does not contain the
+cough sample set we created due to potential copyright infringement.
+
+### Implementing more than just cough detection
+
+The model could not only detect cough, but also which kind of cough (i.e.
+dry-cough) or other respiratory symptoms like sneezes or rattling. All of that
+data can greatly improve the recommendation engine to give deeper insight and
+more nuanced guidance.
+
+### Improving the recommendation engine
+
+The recommendation engine is currently very crude and only take a few values
+into account. You might find the recommendations it gives very strange
+sometimes, especially when using a randomized data set. This should be improved
+upon using more insight from actual medical professionals and respective
+statistical handling of the data at hand.
+
 ---
 
 ![](css/wvsv.png)
